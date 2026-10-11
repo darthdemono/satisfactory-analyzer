@@ -1,0 +1,698 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://github.com/darthdemono/satisfactory-analyzer/schema.json",
+ "title": "satisfactory-analyzer save export",
+ "description": "One summary per world save. Every figure is read from the file; derived figures are named as such in the Markdown. Python (sav/model.py) and JavaScript (app/model.js) produce identical documents, held together by tools/parity.mjs.",
+ "type": "object",
+ "required": [
+  "meta",
+  "integrity",
+  "time",
+  "items",
+  "players",
+  "progression",
+  "buildings",
+  "machines",
+  "extraction",
+  "power",
+  "logistics",
+  "world",
+  "statistics"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "meta": {
+   "type": "object",
+   "required": [
+    "saveName",
+    "sessionName",
+    "saved",
+    "playSeconds",
+    "buildVersion",
+    "saveVersion",
+    "headerType",
+    "mapName",
+    "creative",
+    "modded",
+    "partitioned",
+    "saveIdentifier"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "saveName": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "sessionName": {
+     "type": "string"
+    },
+    "saved": {
+     "type": "string"
+    },
+    "playSeconds": {
+     "type": "integer"
+    },
+    "buildVersion": {
+     "type": "integer"
+    },
+    "saveVersion": {
+     "type": "integer"
+    },
+    "headerType": {
+     "type": "integer"
+    },
+    "mapName": {
+     "type": "string"
+    },
+    "creative": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "modded": {
+     "type": "integer"
+    },
+    "partitioned": {
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "saveIdentifier": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "integrity": {
+   "type": "object",
+   "required": [
+    "objects",
+    "levels",
+    "unreadProperties",
+    "undecodedBytes",
+    "objectErrors"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "objects": {
+     "type": "integer"
+    },
+    "levels": {
+     "type": "integer"
+    },
+    "unreadProperties": {
+     "type": "integer"
+    },
+    "undecodedBytes": {
+     "type": "integer"
+    },
+    "objectErrors": {
+     "type": "integer"
+    }
+   },
+   "description": "What the reader could not decode. All three counters are zero on a clean read."
+  },
+  "time": {
+   "type": "object",
+   "required": [
+    "playSeconds",
+    "inGameDays",
+    "daySeconds",
+    "daysSinceLastDeath",
+    "startingPoint"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "playSeconds": {
+     "type": "integer"
+    },
+    "inGameDays": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "daySeconds": {
+     "type": [
+      "number",
+      "null"
+     ]
+    },
+    "daysSinceLastDeath": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "startingPoint": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "items": {
+   "type": "object",
+   "required": [
+    "total",
+    "groups",
+    "fluidsCubicMeters",
+    "dimensionalDepot",
+    "onBelts"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "total": {
+     "type": "integer"
+    },
+    "groups": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "description": "item -> count",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     }
+    },
+    "fluidsCubicMeters": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "number"
+     }
+    },
+    "dimensionalDepot": {
+     "type": "object",
+     "description": "item -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "onBelts": {
+     "type": "object",
+     "description": "item -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    }
+   }
+  },
+  "players": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "name",
+     "position",
+     "items"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "position": {
+      "type": "array",
+      "items": {
+       "type": "integer"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "centimetres, x/y/z"
+     },
+     "items": {
+      "type": "object",
+      "description": "inventory and equipment",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     }
+    }
+   }
+  },
+  "progression": {
+   "type": "object",
+   "required": [
+    "gamePhase",
+    "targetPhase",
+    "activeSchematic",
+    "schematicNames",
+    "schematicsPurchased",
+    "schematicKinds",
+    "milestones",
+    "highestTier",
+    "recipesAvailable",
+    "alternateRecipes",
+    "researchTrees",
+    "hardDrivesUsed",
+    "unlocks",
+    "inventorySlots",
+    "armSlots",
+    "resourceSink",
+    "dropPodsLooted"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "gamePhase": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "targetPhase": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "activeSchematic": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "schematicNames": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "schematicsPurchased": {
+     "type": "integer"
+    },
+    "schematicKinds": {
+     "type": "object",
+     "description": "schematic folder -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "milestones": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "array",
+      "items": {
+       "type": "integer"
+      }
+     }
+    },
+    "highestTier": {
+     "type": "integer"
+    },
+    "recipesAvailable": {
+     "type": "integer"
+    },
+    "alternateRecipes": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "researchTrees": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "hardDrivesUsed": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "unlocks": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "inventorySlots": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "armSlots": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "resourceSink": {
+     "type": "object",
+     "required": [
+      "points",
+      "levels"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "points": {
+       "type": [
+        "array",
+        "null"
+       ],
+       "items": {
+        "type": "integer"
+       }
+      },
+      "levels": {
+       "type": [
+        "array",
+        "null"
+       ],
+       "items": {
+        "type": "integer"
+       }
+      }
+     }
+    },
+    "dropPodsLooted": {
+     "type": "integer"
+    }
+   }
+  },
+  "buildings": {
+   "type": "object",
+   "required": [
+    "total",
+    "byCategory",
+    "rows"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "total": {
+     "type": "integer"
+    },
+    "byCategory": {
+     "type": "object",
+     "description": "category -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "rows": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "class",
+       "name",
+       "category",
+       "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "class": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "category": {
+        "type": "string"
+       },
+       "count": {
+        "type": "integer"
+       }
+      }
+     }
+    }
+   }
+  },
+  "machines": {
+   "type": "object",
+   "required": [
+    "count",
+    "producing",
+    "recipes"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "count": {
+     "type": "integer"
+    },
+    "producing": {
+     "type": "integer"
+    },
+    "recipes": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "recipe",
+       "machine",
+       "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "recipe": {
+        "type": "string"
+       },
+       "machine": {
+        "type": "string"
+       },
+       "count": {
+        "type": "integer"
+       }
+      }
+     }
+    }
+   }
+  },
+  "extraction": {
+   "type": "object",
+   "required": [
+    "extractors",
+    "producing"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "extractors": {
+     "type": "object",
+     "description": "kind -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "producing": {
+     "type": "object",
+     "description": "kind -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    }
+   }
+  },
+  "power": {
+   "type": "object",
+   "required": [
+    "generators",
+    "circuits",
+    "targetConsumptionMW",
+    "poles",
+    "lines"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "generators": {
+     "type": "object",
+     "description": "kind -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "circuits": {
+     "type": "integer"
+    },
+    "targetConsumptionMW": {
+     "type": "number"
+    },
+    "poles": {
+     "type": "integer"
+    },
+    "lines": {
+     "type": "integer"
+    }
+   }
+  },
+  "logistics": {
+   "type": "object",
+   "required": [
+    "belts",
+    "lifts",
+    "chains",
+    "beltLengthMeters",
+    "itemsOnBelts",
+    "pipelines",
+    "pipeNetworks",
+    "trackSegments",
+    "trainStations",
+    "locomotives",
+    "freightWagons",
+    "droneStations",
+    "vehicles"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "belts": {
+     "type": "integer"
+    },
+    "lifts": {
+     "type": "integer"
+    },
+    "chains": {
+     "type": "integer"
+    },
+    "beltLengthMeters": {
+     "type": "integer"
+    },
+    "itemsOnBelts": {
+     "type": "integer"
+    },
+    "pipelines": {
+     "type": "integer"
+    },
+    "pipeNetworks": {
+     "type": "integer"
+    },
+    "trackSegments": {
+     "type": "integer"
+    },
+    "trainStations": {
+     "type": "integer"
+    },
+    "locomotives": {
+     "type": "integer"
+    },
+    "freightWagons": {
+     "type": "integer"
+    },
+    "droneStations": {
+     "type": "integer"
+    },
+    "vehicles": {
+     "type": "object",
+     "description": "kind -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    }
+   }
+  },
+  "world": {
+   "type": "object",
+   "required": [
+    "dropPods",
+    "dropPodsLooted",
+    "mercerShrines",
+    "uncollectedSlugs",
+    "pickupsCollected",
+    "destroyedActors",
+    "collectedRefs"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "dropPods": {
+     "type": "integer"
+    },
+    "dropPodsLooted": {
+     "type": "integer"
+    },
+    "mercerShrines": {
+     "type": "integer"
+    },
+    "uncollectedSlugs": {
+     "type": "object",
+     "required": [
+      "blue",
+      "yellow",
+      "purple"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "blue": {
+       "type": "integer"
+      },
+      "yellow": {
+       "type": "integer"
+      },
+      "purple": {
+       "type": "integer"
+      }
+     }
+    },
+    "pickupsCollected": {
+     "type": "integer"
+    },
+    "destroyedActors": {
+     "type": "integer"
+    },
+    "collectedRefs": {
+     "type": "integer"
+    }
+   }
+  },
+  "statistics": {
+   "type": "object",
+   "required": [
+    "built",
+    "dismantled",
+    "creaturesKilled",
+    "consumablesConsumed",
+    "itemsCrafted",
+    "itemsPickedUp"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "built": {
+     "type": "object",
+     "description": "top 25",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "dismantled": {
+     "type": "integer"
+    },
+    "creaturesKilled": {
+     "type": "object",
+     "description": "kind -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "consumablesConsumed": {
+     "type": "object",
+     "description": "kind -> count",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "itemsCrafted": {
+     "type": "object",
+     "description": "top 25",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    },
+    "itemsPickedUp": {
+     "type": "object",
+     "description": "top 25",
+     "additionalProperties": {
+      "type": "integer"
+     }
+    }
+   }
+  }
+ }
+}
