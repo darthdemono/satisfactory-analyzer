@@ -1,6 +1,6 @@
-"""Readable names and categories from class paths. The game's own display names live in
-encrypted paks, so this derives them from the class name; OVERRIDES fixes the ones where the
-internal name differs from what the player sees."""
+"""Readable names and categories from class paths. The player-facing name comes from the table the game ships
+(db_sat/names.json, built by tools/gamefiles.py). Classes the table lacks (creatures, integrated buildings, research
+trees) fall back to OVERRIDES and then to making the class name readable."""
 import re
 
 OVERRIDES = {
@@ -50,15 +50,25 @@ SCHEMATIC = re.compile(r"^Schematic_(\d+)-(\d+)(?:_C)?$")
 
 
 def schematic(path):
-    """Schematic_6-5_C -> Tier 6, Milestone 5; anything else falls back to nice()."""
+    """The schematic's own name when the table has it, else Schematic_6-5_C -> Tier 6, Milestone 5."""
+    if leaf(path) in NAMES: return NAMES[leaf(path)]
     m = SCHEMATIC.match(leaf(path))
     return f"Tier {m.group(1)}, Milestone {m.group(2)}" if m else nice(path)
 
 
+NAMES = {}  # class name -> the name the player sees, from db_sat/names.json; use() installs it
+
+
+def use(table):
+    NAMES.clear()
+    NAMES.update(table)
+
+
 def nice(path):
     """/Game/.../Desc_IronPlate.Desc_IronPlate_C -> Iron Plate"""
+    if leaf(path) in NAMES: return NAMES[leaf(path)]
     n = ARTIFACT.sub("", leaf(path).removesuffix("_C"))
-    for p in ("Build_", "Desc_", "Recipe_", "BP_", "Char_", "Schematic_", "Equip_", "Research_", "GP_"):
+    for p in ("Build_", "Desc_", "Recipe_", "BPD_ResearchTree_", "BP_", "Char_", "Schematic_", "Equip_", "Research_", "GP_"):
         if n.startswith(p): n = n[len(p):]; break
     for p in ("EqDesc", "EquipmentDescriptor", "Eq_Desc", "EquipmentDesc"):
         if n.startswith(p) and len(n) > len(p) + 1: n = n[len(p):].lstrip("_"); break
