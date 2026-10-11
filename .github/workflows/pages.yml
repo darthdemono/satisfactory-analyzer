@@ -1,0 +1,57 @@
+name: Deploy web app to GitHub Pages
+
+# The site is static: index.html, app/*.js, css, graphics and the vendored Mermaid. Nothing is
+# built. The job copies the files the page needs into _site and publishes that, so tests/,
+# tools/, notes/ and the Python package never ride along.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Two deploys must not race. Queue the second instead of cancelling it, so a push made
+# mid-deploy still ends up published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      # The saves are personal and live outside the repo, so the corpus tests skip here. They
+      # still import every module, which is what catches a typo before it is published.
+      - name: Check the Python side
+        run: |
+          python3 -m py_compile sat_to_md.py sav/*.py
+          python3 -m unittest discover -s tests
+
+      - name: Check the browser side
+        run: |
+          for f in app/*.js sw.js; do node --check "$f"; done
+          node --input-type=module -e "for (const m of ['reader','names','model','render','combine']) await import('./app/' + m + '.js')"
+
+      - name: Package the site
+        run: |
+          mkdir _site
+          cp -r index.html sw.js manifest.webmanifest icon.svg schema.json app css graphics vendor _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
