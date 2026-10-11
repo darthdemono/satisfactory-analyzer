@@ -1,0 +1,36 @@
+/* The single-save report: a stack of plates with a tile row on top. */
+.sat { display: grid; gap: 14px; }
+.sat h2, .sat h3 { margin: 0; font-weight: 500; letter-spacing: 0.04em; }
+.sat h2 { font-size: 15px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+.sat h3 { font-size: 14px; color: var(--val); margin: 10px 0 6px; }
+.sat .head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline; }
+.sat .head h1 { margin: 0; font-size: 22px; color: var(--val); font-weight: 500; }
+.sat .sub { color: var(--ink-dim); font-size: 13px; }
+.sat .plate { border: 1px solid var(--box); background: var(--panel-2); padding: 12px 14px; box-shadow: inset 0 0 0 1px var(--box-in); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+.tile { border: 1px solid var(--box); background: var(--panel); padding: 8px 10px; }
+.tile b { display: block; font-size: 20px; color: var(--val); font-weight: 500; font-variant-numeric: tabular-nums; }
+.tile span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-dim); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 3px 14px; margin: 0; font-size: 14px; }
+.kv dt { color: var(--ink-dim); }
+.kv dd { margin: 0; color: var(--val); font-variant-numeric: tabular-nums; }
+.bars { display: grid; gap: 5px; margin: 4px 0 8px; }
+.bar { display: grid; grid-template-columns: 110px 1fr 70px; align-items: center; gap: 8px; font-size: 13px; }
+.bar i { display: block; height: 10px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); min-width: 2px; }
+.bar em { font-style: normal; text-align: right; font-variant-numeric: tabular-nums; color: var(--val); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { border: 1px solid var(--box); padding: 2px 8px; font-size: 12px; color: var(--ink); background: var(--panel); }
+.chip.on { border-color: var(--accent-2); color: var(--sel-ink); }
+.sat details { border-top: 1px solid var(--rule-soft); padding: 6px 0; }
+.sat summary { cursor: pointer; color: var(--ink); font-size: 14px; }
+.sat summary:hover { color: var(--val); }
+.sat table { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 6px; }
+.sat th { text-align: left; color: var(--ink-dim); font-weight: 400; border-bottom: 1px solid var(--rule); padding: 3px 8px 3px 0; }
+.sat td { padding: 2px 8px 2px 0; border-bottom: 1px solid var(--rule-soft); color: var(--ink); }
+.sat td.n, .sat th.n { text-align: right; font-variant-numeric: tabular-nums; color: var(--val); }
+.players { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+.sat .integrity { font-size: 12px; color: var(--ink-dim); }
+.sat .integrity b { color: var(--ok); font-weight: 500; }
+.sat .integrity b.bad { color: var(--danger); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.combined-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
