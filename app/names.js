@@ -28,7 +28,7 @@ const OVERRIDES = {
   Char_Player: "Player", FGConveyorChainActor: "Conveyor chain",
 };
 const ARTIFACT = /_RepSize\w+$/;
-const PREFIXES = ["Build_", "Desc_", "Recipe_", "BP_", "Char_", "Schematic_", "Equip_", "Research_", "GP_"];
+const PREFIXES = ["Build_", "Desc_", "Recipe_", "BPD_ResearchTree_", "BP_", "Char_", "Schematic_", "Equip_", "Research_", "GP_"];
 const FLUIDS = new Set(["Water", "LiquidOil", "HeavyOilResidue", "LiquidFuel", "LiquidTurboFuel", "LiquidBiofuel", "AluminaSolution",
   "SulfuricAcid", "NitricAcid", "NitrogenGas", "RocketFuel", "IonizedFuel", "DissolvedSilica", "DarkEnergy"]);
 
@@ -37,12 +37,17 @@ const endsC = (s) => (s.endsWith("_C") ? s.slice(0, -2) : s);
 
 export const isFluid = (p) => { let n = endsC(leaf(p)); if (n.startsWith("Desc_")) n = n.slice(5); return FLUIDS.has(n); };
 
+let NAMES = {}; // class name -> the name the player sees, from db_sat/names.json
+export const useNames = (table) => { NAMES = table; };
+
 export function schematic(path) {
+  if (Object.hasOwn(NAMES, leaf(path))) return NAMES[leaf(path)];
   const m = /^Schematic_(\d+)-(\d+)(?:_C)?$/.exec(leaf(path));
   return m ? `Tier ${m[1]}, Milestone ${m[2]}` : nice(path);
 }
 
 export function nice(path) {
+  if (Object.hasOwn(NAMES, leaf(path))) return NAMES[leaf(path)];
   let n = endsC(leaf(path)).replace(ARTIFACT, "");
   for (const p of PREFIXES) if (n.startsWith(p)) { n = n.slice(p.length); break; }
   for (const p of ["EqDesc", "EquipmentDescriptor", "Eq_Desc", "EquipmentDesc"])
