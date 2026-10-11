@@ -46,7 +46,7 @@ jobs:
       - name: Package the site
         run: |
           mkdir _site
-          cp -r index.html sw.js manifest.webmanifest icon.svg schema.json app css graphics vendor _site/
+          cp -r index.html sw.js manifest.webmanifest icon.svg schema.json app css graphics vendor db_sat _site/
           touch _site/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
