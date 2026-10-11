@@ -42,7 +42,8 @@ function startWorker() {
 }
 
 async function parseInline(buf) {
-  const [{ parse }, { summarize }] = await Promise.all([import("./reader.js"), import("./model.js")]);
+  const [{ parse }, { summarize }, { useNames }] = await Promise.all([import("./reader.js"), import("./model.js"), import("./names.js")]);
+  useNames(await (await fetch("db_sat/names.json")).json());
   return summarize(await parse(buf));
 }
 
