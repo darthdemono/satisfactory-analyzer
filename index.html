@@ -21,10 +21,10 @@
         <h1 id="name">Satisfactory Analyzer</h1>
         <hr class="underline" />
         <p class="tag-line">
-          A Satisfactory save is a compressed pile of a few thousand objects. Drop one in and it
-          opens into the factory: where you are in the tech tree, every building and what it is
-          making, the belts and the power, everything in every box, and, given a folder of saves,
-          the order in which it all happened.
+          A Satisfactory save is a few thousand compressed objects, and the game never adds them
+          up for you. Drop one in and you get the total: where you are in the tech tree, every
+          building and what it is making, the belts, the power, what is in every box. Drop in a
+          folder of saves and you get the order it all happened in.
         </p>
       </header>
 
@@ -37,15 +37,16 @@
           </div>
           <button type="button" id="drop" class="frame" aria-describedby="drop-note">
             <span class="big" id="drop-big">Drop a .sav save here, or click to choose</span>
-            <span class="small" id="drop-note">Read on this machine. Nothing is sent anywhere.</span>
+            <span class="small" id="drop-note">The file is read in this tab. There is no server to send it to.</span>
           </button>
           <button type="button" id="pick-folder" class="mode" hidden>Choose a folder instead</button>
           <input id="file" type="file" accept=".sav" hidden />
           <input id="folder" type="file" hidden webkitdirectory />
           <div id="status" role="status" aria-live="polite"></div>
           <p class="help">
-            Your saves live in <code>%LOCALAPPDATA%\FactoryGame\Saved\SaveGames\&lt;id&gt;</code> on
-            Windows, and in the server's <code>saved/server</code> folder on a dedicated server. It only ever reads the file.
+            Saves live in <code>%LOCALAPPDATA%\FactoryGame\Saved\SaveGames\&lt;id&gt;</code> on
+            Windows and in <code>saved/server</code> on a dedicated server. Opening one is
+            read-only, so pointing this at a live save is safe.
           </p>
           <div id="out"></div>
         </section>
@@ -56,12 +57,12 @@
           <div class="sb-row"><span class="sb-n">Properties read</span><span class="sb-v">All</span></div>
           <div class="sb-div"></div>
           <div class="sb-row"><span class="sb-n">Reads</span><span class="sb-v">In this tab</span></div>
-          <div class="sb-row"><span class="sb-n">Uploads</span><span class="sb-v">Never</span></div>
-          <div class="sb-row"><span class="sb-n">Writes to save</span><span class="sb-v">Never</span></div>
+          <div class="sb-row"><span class="sb-n">Uploads</span><span class="sb-v">None</span></div>
+          <div class="sb-row"><span class="sb-n">Writes to save</span><span class="sb-v">No</span></div>
           <div class="sb-div"></div>
           <div class="sb-row"><span class="sb-n">Exports</span><span class="sb-v">MD · JSON</span></div>
           <div class="sb-row"><span class="sb-n">Offline</span><span class="sb-v">After first load</span></div>
-          <div class="sb-note">Every report ends with a read-integrity line: how many properties and bytes it could not decode. On a clean read that is zero and zero.</div>
+          <div class="sb-note">The last line of every report counts the properties and bytes the reader could not decode. On a clean read both are zero.</div>
         </aside>
       </div>
     </main>
