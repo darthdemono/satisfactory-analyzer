@@ -10,8 +10,10 @@ import { parse } from "../app/reader.js";
 import { summarize } from "../app/model.js";
 import { md } from "../app/render.js";
 import { combined } from "../app/combine.js";
+import { useNames } from "../app/names.js";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+useNames(JSON.parse(fs.readFileSync(path.join(root, "db_sat/names.json"), "utf8")));
 const walk = (p) => (fs.statSync(p).isDirectory() ? fs.readdirSync(p).sort().flatMap((f) => walk(path.join(p, f))) : p.endsWith(".sav") ? [p] : []);
 const files = process.argv.slice(2).flatMap(walk);
 
