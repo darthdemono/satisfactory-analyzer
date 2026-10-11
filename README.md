@@ -24,7 +24,7 @@ Every property in the file gets decoded, and so does the class data after them: 
 
 - **Resource-node purity.** The save never stores it.
 - **Live power load.** The report sums each machine's target draw and labels it as that.
-- **The game's own names.** Those sit in encrypted paks. Names here come from class paths, so `Desc_IronPlateReinforced_C` becomes "Reinforced Iron Plate", plus a small override table. When one reads badly, add it to `OVERRIDES` in both `sav/names.py` and `app/names.js`.
+- **Names for creatures, research trees and integrated buildings.** Everything else comes from the Docs file the game ships (`db_sat/names.json`, built with `tools/gamefiles.py`), so `BP_EquipmentDescriptorShockShank_C` shows as the Xeno-Zapper. The classes that file lacks get their class name made readable, with a small override table in `sav/names.py` and `app/names.js`.
 
 ## Layout
 
