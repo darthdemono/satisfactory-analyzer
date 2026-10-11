@@ -1,8 +1,8 @@
 # satisfactory-analyzer
 
-A Satisfactory save is a few thousand compressed objects, and the game never adds them up for you. I wanted the total: where I am in the tech tree, how many buildings I have, what each machine is making, what is in every box. This prints it. Give it a folder of saves and it prints the history instead, in the order things happened.
+**Read a Satisfactory `.sav` and get back a plain report of the factory: where you are in the tech tree, every building and what it is making, and what is in every box. Browser or command line.**
 
-It is the same idea as sl2-analyzer, for a different game. There is a Python CLI and a browser app, and both run the same reading logic.
+A Satisfactory save is a few thousand compressed objects, and the game never adds them up for you. I wanted the total: where I am in the tech tree, how many buildings I have, what each machine is making, what is in every box. This prints it. Give it a folder of saves and it prints the history instead, in the order things happened.
 
 ## Use it
 
