@@ -4,7 +4,7 @@ Unified instruction file for any coding agent (Claude Code, Codex, or similar). 
 
 ## What this is
 
-Reads a Satisfactory `.sav` world save and reports what is in it. Two front ends over the SAME reading logic, deliberately shaped like `~/Code/sl2-analyzer`: the Python CLI `sat_to_md.py` (Markdown, JSON against `schema.json`, or a combined history of many saves) and the client-side web app (`index.html` + `app/*.js`), a faithful port held byte for byte by `tools/parity.mjs`. Python side: the `sav/` package, standard library only. Web side: no framework, no build step, Mermaid vendored.
+A Satisfactory world save goes in, a report comes out. It is shaped like `~/Code/sl2-analyzer` on purpose: a Python CLI (`sat_to_md.py`: Markdown, JSON against `schema.json`, or a combined history of many saves) and a browser app (`index.html` + `app/*.js`) that is a port of the Python, held byte for byte by `tools/parity.mjs`. Python side: the `sav/` package, standard library. Web side: no framework, no build step, Mermaid vendored.
 
 ## Commands
 
