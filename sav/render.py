@@ -1,6 +1,6 @@
 """summary dict -> Markdown. Same shape as the sl2-analyzer exports: bold-label bullets, tables,
 details blocks for reference material."""
-REPO_NOTE = "_Read by satisfactory-analyzer: header, every object's properties and the class-specific data are decoded; nothing is guessed. Derived figures are labelled._"
+REPO_NOTE = "_Made by satisfactory-analyzer. Figures worked out from the save rather than stored in it say so where they appear._"
 
 
 def n(v):
