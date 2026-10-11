@@ -1,0 +1,24 @@
+/* Colour and type tokens. Satisfactory's UI is near-black plates with one loud orange,
+   so the page is the same: panels barely lifted off the background, rules almost invisible,
+   and the accent reserved for what you are looking at. */
+:root {
+  --bg: #07080a;
+  --sel: color-mix(in srgb, var(--accent) 38%, #140a02);
+  --sel-edge: color-mix(in srgb, var(--accent) 60%, #1c0d02);
+  --sel-ink: #ffe3c4;
+  --panel: url(../graphics/noise.svg) repeat, #0e1013;
+  --panel-2: url(../graphics/noise.svg) repeat, #11141a;
+  --ink: #c3c8d0;
+  --ink-dim: #848b97;
+  --val: #eef1f5;
+  --rule: rgba(255, 255, 255, 0.08);
+  --rule-soft: rgba(255, 255, 255, 0.045);
+  --box: #20262f;
+  --box-in: rgba(255, 255, 255, 0.055);
+  --accent: #f08a24;
+  --accent-2: #8a5316;
+  --danger: #c24b3d;
+  --ok: #6fa35a;
+  --font-ui: "Roboto", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --radius: 3px;
+}
