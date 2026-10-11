@@ -1,7 +1,7 @@
 // Port of sav/render.py: summary -> Markdown, byte for byte.
 import { pyRound } from "./model.js";
 
-const REPO_NOTE = "_Read by satisfactory-analyzer: header, every object's properties and the class-specific data are decoded; nothing is guessed. Derived figures are labelled._";
+const REPO_NOTE = "_Made by satisfactory-analyzer. Figures worked out from the save rather than stored in it say so where they appear._";
 
 const grp = (x) => x.toLocaleString("en-US", { maximumFractionDigits: 0, useGrouping: true });
 
