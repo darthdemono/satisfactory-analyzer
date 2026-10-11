@@ -22,6 +22,7 @@ python3 -m http.server <free port> --bind 127.0.0.1   # then open index.html; CH
 
 - The **dedicated server's save folder is authoritative and newest**: `~/docker/satisfactory/config/saved/server/`. It holds the Joy-and-Jade lineage and the old First/Test lineages. `ServerSettings.*.sav`, `ServerManager_V2.sav` and `CurrentSettingsSaveName.sav` are NOT worlds and must be refused cleanly (`SavError`).
 - Backups of the Heroic-prefix and wd-blue saves: `/mnt/nobara-data/Backup/AppData/Local/FactoryGame/Saved/SaveGames/` (49 files, md5-verified 11-10-2026).
+- The server's saves are copied to `.../SaveGames/dedicated-server/` in that same backup tree (42 files, md5-verified 11-10-2026, never overwrites). The numbered subfolder next to it holds the older Heroic client session: its `autosave_0..2` have the SAME names as the server's but different content, so the two must stay in separate folders.
 - Write generated reports to `/mnt/nobara-data/Game Save Data/` (renamed from `Temp/DS Save Data` on 11-10-2026): `satisfactory_playthrough(combined).md` and `satisfactory_playthrough.md`.
 
 ## Architecture
